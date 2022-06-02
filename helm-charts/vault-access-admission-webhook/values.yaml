@@ -1,4 +1,6 @@
 spec:  
-  token: ""
-  server: ""
-  roleName: ""
+  image: canpolatoral/vault-admission-webhook:0.1
+  vault:
+    token: ""
+    server: "localhost:8200"
+    roleName: "ms-secret-access-manager"

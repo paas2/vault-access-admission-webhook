@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: vault-access-admission-webhook
-          image: canpolatoral/vault-admission-webhook:0.1
+          image: {{ .Values.image }}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
@@ -25,3 +25,12 @@ spec:
           env:
             - name: ASPNETCORE_URLS
               value: http://+:80
+            - name: Vault__Token
+              valueFrom:
+                secretKeyRef:
+                  name: ms-secret-access-manager-auth-secret
+                  key: token
+            - name: Vault__Server
+              value: {{ .Values.spec.vault.server }}
+            - name: Vault__RoleName
+              value: {{ .Values.spec.vault.roleName }}
