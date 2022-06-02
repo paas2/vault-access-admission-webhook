@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vault-access-admission-webhook
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: vault-access-admission-webhook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vault-access-admission-webhook
+  template:
+    metadata:
+      labels:
+        app: vault-access-admission-webhook
+    spec:
+      containers:
+        - name: vault-access-admission-webhook
+          image: canpolatoral/vault-admission-webhook:0.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          env:
+            - name: ASPNETCORE_URLS
+              value: http://+:80
