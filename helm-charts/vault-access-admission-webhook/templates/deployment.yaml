@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: vault-access-admission-webhook
-          image: {{ .Values.image }}
+          image: {{ .Values.spec.image }}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
