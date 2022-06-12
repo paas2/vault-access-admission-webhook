@@ -38,7 +38,11 @@ spec:
             - name: ASPNETCORE_Kestrel__Certificates__Default__Path
               value: /var/lib/tls/tls.crt
             - name: ASPNETCORE_Kestrel__Certificates__Default__Password
-              value: /var/lib/tls/tls.key
+              valueFrom:
+                secretKeyRef:
+                  name: vault-policy-webhook-tls
+                  key: tls.key
+              # value: /var/lib/tls/tls.key
             - name: Vault__Token
               valueFrom:
                 secretKeyRef:
