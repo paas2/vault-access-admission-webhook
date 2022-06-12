@@ -1,0 +1,16 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: vault-sidecar-injector-service
+  namespace: {{ .Release.Namespace }}
+spec:
+  secretName: vault-policy-webhook-tls
+  issuerRef:
+    name: vault-issuer
+  dnsNames:
+  - "vault-policy-webhook.enbd.com"
+  - "vault-policy-webhook.enbd.com.vault-access-definitions"
+  - "vault-policy-webhook.enbd.com.vault-access-definitions.svc"
+  - "vault-access-admission-webhook"
+  - "vault-access-admission-webhook.vault-access-definitions"
+  - "vault-access-admission-webhook.vault-access-definitions.svc"

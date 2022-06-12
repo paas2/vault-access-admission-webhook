@@ -26,6 +26,9 @@ $ vault write pki/roles/vault-policy-webhook \
  allowed_domains=vault-policy-webhook.enbd.com \
  allowed_domains=vault-policy-webhook.enbd.com.vault-access-definitions \
  allowed_domains=vault-policy-webhook.enbd.com.vault-access-definitions.svc \
+ allowed_domains=vault-access-admission-webhook \
+ allowed_domains=vault-access-admission-webhook.vault-access-definitions \
+ allowed_domains=vault-access-admission-webhook.vault-access-definitions.svc \
  allow_subdomains=true \
  allow_bare_domains=true \
  require_cn=false \
@@ -40,3 +43,11 @@ path "pki/roles/vault-policy-webhook"   { capabilities = ["create", "update"] }
 path "pki/sign/vault-policy-webhook"    { capabilities = ["create", "update"] }
 path "pki/issue/vault-policy-webhook"   { capabilities = ["create"] }
 EOF
+
+
+# Finally, create a Kubernetes authentication role named issuer that binds the pki policy with a Kubernetes service account named issuer.
+$ vault write auth/kubernetes/role/webhook-issuer \
+    bound_service_account_names=webhook-issuer \
+    bound_service_account_namespaces=vault-access-definitions \
+    policies=pki \
+    ttl=20m

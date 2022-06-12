@@ -1,0 +1,8 @@
+apiVersion: "enbd.com/v1"
+kind: "VaultAccessDefinition"
+metadata:
+  name: "vaultaccessdefinitions"
+  namespace: {{ .Release.Namespace }}
+spec:
+  accessDefinitions: 
+    {{- toYaml .Values.spec.accessDefinitions | nindent 8 }}

@@ -1,6 +1,14 @@
 spec:  
   image: canpolatoral/vault-admission-webhook:0.2
+  webhookPath: "/validationwebhook/validate"
   vault:
     token: ""
     server: "localhost:8200"
     roleName: "ms-secret-access-manager"
+  accessDefinitions:
+    - serviceAccountName: TestServiceAccount1
+      serviceAccountNamespace: TestServiceAccountNamespace1
+      secretPath: kv/TestSecretPath1
+    - serviceAccountName: TestServiceAccount2
+      serviceAccountNamespace: TestServiceAccountNamespace2
+      secretPath: vk/TestSecretPath2

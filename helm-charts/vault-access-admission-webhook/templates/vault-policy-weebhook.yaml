@@ -1,0 +1,25 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: "vault-policy-webhook.enbd.com"
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    cert-manager.io/inject-ca-from: "{{ .Release.Namespace }}/vault-sidecar-injector-service"
+webhooks:
+- name: "vault-policy-webhook.enbd.com"
+  rules:
+  - apiGroups:   ["enbd.com"]
+    apiVersions: ["v1"]
+    operations:  ["CREATE", "UPDATE", "DELETE"]
+    resources:   ["vaultaccessdefinitions"]
+    scope:       "Namespaced"
+  clientConfig:
+    service:
+        namespace: {{ .Release.Namespace }}
+        name: "vault-access-admission-webhook"
+        path: {{ .Values.spec.webhookPath }}
+        port: 443
+    # url: {{ .Values.spec.webhookUrl }}
+  admissionReviewVersions: ["v1", "v1beta1"]
+  sideEffects: None
+  # timeoutSeconds: 5
