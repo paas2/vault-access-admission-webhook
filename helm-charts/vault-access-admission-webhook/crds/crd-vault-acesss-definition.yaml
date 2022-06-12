@@ -1,0 +1,47 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  # name must match the spec fields below, and be in the form: <plural>.<group>
+  name: vaultaccessdefinitions.enbd.com
+spec:
+  # group name to use for REST API: /apis/<group>/<version>
+  group: enbd.com
+  names:
+    # plural name to be used in the URL: /apis/<group>/<version>/<plural>
+    plural: vaultaccessdefinitions
+    # singular name to be used as an alias on the CLI and for display
+    singular: vaultaccessdefinition
+    # kind is normally the CamelCased singular type. Your resource manifests use this.
+    kind: VaultAccessDefinition
+    # shortNames allow shorter string to match your resource on the CLI
+    shortNames:
+      - vad
+  # either Namespaced or Cluster
+  scope: Namespaced
+  versions:
+    - name: v1
+      # Each version can be enabled/disabled by Served flag.
+      served: true
+      # One and only one version must be marked as the storage version.
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                accessDefinitions:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      serviceAccountName:
+                        type: string
+                      secretPath:
+                        type: string
+                      serviceAccountNamespace:
+                        type: string
+                    required: ["serviceAccountName", "serviceAccountNamespace", "secretPath"]
+              required: ["accessDefinitions"]
+          required: ["spec"]
