@@ -15,16 +15,30 @@ spec:
       labels:
         app: vault-access-admission-webhook
     spec:
+      volumes:
+        - name: tls-secrets
+          secret:
+            secretName: vault-policy-webhook-tls
+        - name: pfx
+          emptyDir: {}
       containers:
         - name: vault-access-admission-webhook
           image: {{ .Values.spec.image }}
-          imagePullPolicy: IfNotPresent
+          # imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: tls-secrets
+              mountPath: /var/lib/tls
           ports:
-            - containerPort: 80
+            - name: https
+              containerPort: 443
               protocol: TCP
           env:
             - name: ASPNETCORE_URLS
-              value: http://+:80
+              value: https://+:443;http://+:80
+            - name: ASPNETCORE_Kestrel__Certificates__Default__Path
+              value: /var/lib/tls/tls.crt
+            - name: ASPNETCORE_Kestrel__Certificates__Default__Password
+              value: /var/lib/tls/tls.key
             - name: Vault__Token
               valueFrom:
                 secretKeyRef:
