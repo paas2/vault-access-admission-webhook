@@ -35,14 +35,14 @@ spec:
           env:
             - name: ASPNETCORE_URLS
               value: https://+:443;http://+:80
-            - name: ASPNETCORE_Kestrel__Certificates__Default__Path
+            # - name: ASPNETCORE_Kestrel__Certificates__Default__Path
+            #   value: /var/lib/tls/tls.crt
+            # - name: ASPNETCORE_Kestrel__Certificates__Default__Password
+            #   value: /var/lib/tls/tls.key
+            - name: TlsCertPath
               value: /var/lib/tls/tls.crt
-            - name: ASPNETCORE_Kestrel__Certificates__Default__Password
-              valueFrom:
-                secretKeyRef:
-                  name: vault-policy-webhook-tls
-                  key: tls.key
-              # value: /var/lib/tls/tls.key
+            - name: TlsKeyPath
+              value: /var/lib/tls/tls.key
             - name: Vault__Token
               valueFrom:
                 secretKeyRef:

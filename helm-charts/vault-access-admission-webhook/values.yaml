@@ -1,5 +1,5 @@
 spec:  
-  image: canpolatoral/vault-admission-webhook:0.1
+  image: canpolatoral/vault-admission-webhook:0.2
   vault:
     token: ""
     server: "localhost:8200"
