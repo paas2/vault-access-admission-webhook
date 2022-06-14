@@ -9,7 +9,7 @@ spec:
   accessDefinitions:
     - serviceAccountName: TestServiceAccount1
       serviceAccountNamespace: TestServiceAccountNamespace1
-      secretPath: kv/TestSecretPath1
+      secretPath: vk/Test123
     - serviceAccountName: TestServiceAccount2
       serviceAccountNamespace: TestServiceAccountNamespace2
       secretPath: vk/TestSecretPath2
