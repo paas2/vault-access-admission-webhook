@@ -2,6 +2,7 @@ installCRDs: true
 spec:  
   image: canpolatoral/vault-admission-webhook:0.2
   webhookPath: "/validationwebhook/validate"
+  authMountPath: "sahab2-security-dev"
   vault:
     token: ""
     server: http://host.minikube.internal:8200  

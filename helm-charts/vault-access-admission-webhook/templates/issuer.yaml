@@ -9,7 +9,7 @@ spec:
     path: pki/sign/vault-policy-webhook
     auth:
       kubernetes:
-        mountPath: /v1/auth/sahab2-security-dev # todo get from values
+        mountPath: /v1/auth/{{ .Values.spec.authMountPath }} # todo get from values
         role: webhook-issuer
         secretRef:
           name: webhook-issuer-auth-secret
