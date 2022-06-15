@@ -32,6 +32,17 @@ spec:
             - name: https
               containerPort: 443
               protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 443
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 443
+            initialDelaySeconds: 60
+            periodSeconds: 60
           env:
             - name: ASPNETCORE_URLS
               value: https://+:443;http://+:80
