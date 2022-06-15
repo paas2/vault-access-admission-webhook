@@ -1,12 +1,12 @@
 installCRDs: true
 spec:  
-  image: canpolatoral/vault-admission-webhook:0.2
+  image: canpolatoral/vault-admission-webhook:0.4
   webhookPath: "/validationwebhook/validate"
-  authMountPath: "sahab2-security-dev"
   vault:
     token: ""
     server: http://host.minikube.internal:8200  
     roleName: "ms-secret-access-manager"
+    authMountPath: "sahab2-security-dev"
   accessDefinitions:
     - serviceAccountName: TestServiceAccount1
       serviceAccountNamespace: TestServiceAccountNamespace1
