@@ -52,7 +52,7 @@ vault secrets tune -max-lease-ttl=8760h pki
 
 # Generate a self-signed certificate valid for 8760h.
 vault write pki/root/generate/internal \
-common_name=vault-policy-webhook.enbd.com.vault-access-definitions.svc \
+common_name=vault-access-admission-webhook.vault-access-definitions.svc \
 ttl=8760h \
 alt_names=vault-access-admission-webhook,vault-access-admission-webhook.vault-access-definitions,vault-access-admission-webhook.vault-access-definitions.svc
 
