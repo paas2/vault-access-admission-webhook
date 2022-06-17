@@ -47,7 +47,6 @@ spec:
             periodSeconds: 60
           env:
             - name: ASPNETCORE_URLS
-              # value: https://+:443;http://+:80
               value: https://+:443
             - name: TlsCertPath
               value: /var/lib/tls/tls.crt
