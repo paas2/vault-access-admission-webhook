@@ -5,8 +5,8 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   secretName: vault-policy-webhook-tls
-  duration: {{ .Values.spec.webhookCertificate.duration }}
-  renewBefore: {{ .Values.spec.webhookCertificate.renewBefore }} 
+  # duration: {{ .Values.spec.webhookCertificate.duration }}
+  # renewBefore: {{ .Values.spec.webhookCertificate.renewBefore }} 
   issuerRef:
     name: vault-issuer
   dnsNames:
