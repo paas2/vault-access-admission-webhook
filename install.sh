@@ -44,20 +44,20 @@ vault write $ROLE_PATH/ms-secret-access-manager \
     ttl=24h
 
 # Enable the PKI secrets engine at its default path.
-vault secrets enable pki
+vault secrets enable -path=/sahab2-pki pki
 
 # By default the KPI secrets engine sets the time-to-live (TTL) to 30 days. A certificate can have its lease extended to ensure certificate rotation on a yearly basis (8760h). 
 # Configure the max lease time-to-live (TTL) to 8760h.
-vault secrets tune -max-lease-ttl=8760h pki
+vault secrets tune -max-lease-ttl=8760h sahab2-pki
 
 # Generate a self-signed certificate valid for 8760h.
-vault write pki/root/generate/internal \
+vault write sahab2-pki/root/generate/internal \
 common_name=vault-access-admission-webhook.vault-access-definitions.svc \
 ttl=8760h \
 alt_names=vault-access-admission-webhook,vault-access-admission-webhook.vault-access-definitions,vault-access-admission-webhook.vault-access-definitions.svc
 
 # Configure a role named config-admission-webhook that enables the creation of certificates  config-sidecar-injector-service domains with any subdomains.
-vault write pki/roles/vault-policy-webhook \
+vault write sahab2-pki/roles/vault-policy-webhook \
     allowed_domains=vault-access-admission-webhook \
     allowed_domains=vault-access-admission-webhook.vault-access-definitions \
     allowed_domains=vault-access-admission-webhook.vault-access-definitions.svc \
@@ -67,16 +67,16 @@ vault write pki/roles/vault-policy-webhook \
     max_ttl=10m
 
 # Create a policy named pki that enables read access to the PKI secrets engine paths.
-vault policy write pki - <<EOF
-path "pki*"                                 { capabilities = ["read", "list"] }
-path "pki/roles/vault-policy-webhook"   { capabilities = ["create", "update"] }
-path "pki/sign/vault-policy-webhook"    { capabilities = ["create", "update"] }
-path "pki/issue/vault-policy-webhook"   { capabilities = ["create"] }
+vault policy write sahab2-pki - <<EOF
+path "sahab2-pki*"                                 { capabilities = ["read", "list"] }
+path "sahab2-pki/roles/vault-policy-webhook"   { capabilities = ["create", "update"] }
+path "sahab2-pki/sign/vault-policy-webhook"    { capabilities = ["create", "update"] }
+path "sahab2-pki/issue/vault-policy-webhook"   { capabilities = ["create"] }
 EOF
 
 # Finally, create a Kubernetes authentication role named issuer that binds the pki policy with a Kubernetes service account named issuer.
 vault write $ROLE_PATH/webhook-issuer \
     bound_service_account_names=webhook-issuer \
     bound_service_account_namespaces=vault-access-definitions \
-    policies=pki \
+    policies=sahab2-pki \
     ttl=20m
