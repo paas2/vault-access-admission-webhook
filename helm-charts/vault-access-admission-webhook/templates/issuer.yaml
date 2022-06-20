@@ -6,7 +6,7 @@ metadata:
 spec:
   vault:
     server: {{ .Values.spec.vault.server }}
-    path: pki/sign/vault-policy-webhook
+    path: sahab2-pki/sign/vault-policy-webhook
     auth:
       kubernetes:
         mountPath: /v1/auth/{{ .Values.spec.vault.authMountPath }}
