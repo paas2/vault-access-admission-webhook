@@ -6,7 +6,9 @@ spec:
     server: http://host.minikube.internal:8200  
     roleName: "ms-secret-access-manager"
     authMountPath: "" # environment and cluster based
-  # webhookCertificate: 
+  webhookCertificate: 
+    duration: 2160h # 90d
+    renewBefore: 360h # 15d
   #   duration: 60m
   #   renewBefore: 5m
   accessDefinitions: # environment and cluster based
