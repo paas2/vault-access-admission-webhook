@@ -18,7 +18,7 @@ spec:
       volumes:
         - name: tls-secrets
           secret:
-            secretName: vault-policy-webhook-tls
+            secretName: vault-webhook-tls
         - name: pfx
           emptyDir: {}
       containers:

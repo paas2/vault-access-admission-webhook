@@ -4,7 +4,7 @@ metadata:
   name: "vault-policy-webhook.enbd.com"
   namespace: {{ .Release.Namespace }}
   annotations:
-    cert-manager.io/inject-ca-from: "{{ .Release.Namespace }}/vault-sidecar-injector-service"
+    cert-manager.io/inject-ca-from: "{{ .Release.Namespace }}/vault-webhook-certificate"
 webhooks:
 - name: "vault-policy-webhook.enbd.com"
   rules:
