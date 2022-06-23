@@ -3,7 +3,7 @@ spec:
     authMountPath: "sahab2-security-dev"
     sahabEnvironment: "security-dev"
   accessDefinitions:
-    - serviceAccountName: ServiceAccount1
+    - serviceAccountName: ServiceAccount11
       serviceAccountNamespace: ServiceAccount1Namespace
       secretPath: vk/Secret1
     - serviceAccountName: ServiceAccount2
