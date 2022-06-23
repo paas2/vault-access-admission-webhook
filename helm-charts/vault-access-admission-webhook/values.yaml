@@ -1,6 +1,6 @@
 installCRDs: true
 spec:  
-  image: canpolatoral/vault-admission-webhook:0.11
+  image: canpolatoral/vault-admission-webhook:0.13
   webhookPath: "/validationwebhook/validate"
   vault:
     server: http://host.minikube.internal:8200  
