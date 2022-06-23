@@ -63,3 +63,5 @@ spec:
               value: {{ .Values.spec.vault.roleName }}
             - name: Vault__AuthMountPoint
               value: {{ .Values.spec.vault.authMountPath }}
+            - name: SahabEnvironment
+              value: {{ .Values.spec.sahabEnvironment }}
