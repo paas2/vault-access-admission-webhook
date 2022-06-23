@@ -1,7 +1,7 @@
 spec:  
+  sahabEnvironment: "security-dev"
   vault:
     authMountPath: "sahab2-security-dev"
-    sahabEnvironment: "security-dev"
   accessDefinitions:
     - serviceAccountName: ServiceAccount11
       serviceAccountNamespace: ServiceAccount1Namespace
