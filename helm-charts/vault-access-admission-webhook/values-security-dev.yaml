@@ -5,10 +5,10 @@ spec:
   accessDefinitions:
     - serviceAccountName: ServiceAccount11
       serviceAccountNamespace: ServiceAccount1Namespace
-      secretPath: kv/Secret1
+      secretPath: kv/data/Secret1
     - serviceAccountName: ServiceAccount2
       serviceAccountNamespace: ServiceAccount2Namespace
-      secretPath: kv/Secret2
+      secretPath: kv/data/Secret2
     - serviceAccountName: poc-sa
       serviceAccountNamespace: poc
-      secretPath: sahab2-kv/poc-secret
+      secretPath: sahab2-kv/data/poc-secret
