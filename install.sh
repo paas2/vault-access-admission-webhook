@@ -2,6 +2,7 @@
 
 # Vault adress
 export VAULT_ADDR='http://127.0.0.1:8200'
+export VAULT_SKIP_VERIFY=1
 
 AUTH_PATH="sahab2-security-dev"
 
