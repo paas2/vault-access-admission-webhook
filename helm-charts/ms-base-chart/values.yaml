@@ -1,0 +1,4 @@
+spec:  
+  secretPaths:
+  - kv/data/Secret1
+  - kv/data/Secret2

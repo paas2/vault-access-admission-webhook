@@ -1,0 +1,10 @@
+apiVersion: "enbd.com/v1"
+kind: "VaultAccessDefinition"
+metadata:
+  name: "vaultaccessdefinitions"
+  namespace: {{ .Release.Namespace }}
+spec:
+  serviceAccountName: "{{ .Release.Name }}-sa"
+  serviceAccountNamespace: {{ .Release.Namespace }}
+  secretPaths: 
+    {{- toYaml .Values.spec.secretPaths | nindent 8 }}

@@ -31,17 +31,17 @@ spec:
             spec:
               type: object
               properties:
-                accessDefinitions:
+                serviceAccountName:
+                  type: string
+                serviceAccountNamespace:
+                  type: string
+                secretPaths:
                   type: array
                   items:
                     type: object
                     properties:
-                      serviceAccountName:
-                        type: string
                       secretPath:
                         type: string
-                      serviceAccountNamespace:
-                        type: string
-                    required: ["serviceAccountName", "serviceAccountNamespace", "secretPath"]
-              required: ["accessDefinitions"]
+                    required: ["secretPath"]
+              required: ["secretPaths", "serviceAccountName", "serviceAccountNamespace"]
           required: ["spec"]

@@ -1,7 +1,8 @@
 installCRDs: true
 spec:  
   image: canpolatoral/vault-admission-webhook:0.15
-  webhookPath: "/validationwebhook/validate"
+  # webhookPath: "/validationwebhook/validate"
+  webhookUrl: "https://localhost:7155/validationwebhook/validate"
   vault:
     server: http://host.minikube.internal:8200  
     roleName: "ms-secret-access-manager"
@@ -11,10 +12,3 @@ spec:
     renewBefore: 360h # 15d
   #   duration: 60m
   #   renewBefore: 5m
-  accessDefinitions: # environment and cluster based
-    # - serviceAccountName: TestServiceAccount1
-    #   serviceAccountNamespace: TestServiceAccountNamespace1
-    #   secretPath: vk/TestSecretPath11
-    # - serviceAccountName: TestServiceAccount2
-    #   serviceAccountNamespace: TestServiceAccountNamespace2
-    #   secretPath: vk/TestSecretPath2

@@ -14,12 +14,12 @@ webhooks:
     resources:   ["vaultaccessdefinitions"]
     scope:       "Namespaced"
   clientConfig:
-    service:
-        namespace: {{ .Release.Namespace }}
-        name: "vault-access-admission-webhook"
-        path: {{ .Values.spec.webhookPath }}
-        port: 443
-    # url: {{ .Values.spec.webhookUrl }}
+    # service:
+    #     namespace: {{ .Release.Namespace }}
+    #     name: "vault-access-admission-webhook"
+    #     path: {{ .Values.spec.webhookPath }}
+    #     port: 443
+    url: {{ .Values.spec.webhookUrl }}
   admissionReviewVersions: ["v1", "v1beta1"]
   sideEffects: None
   # timeoutSeconds: 5

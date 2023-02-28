@@ -1,0 +1,18 @@
+annotations:
+  category: SecretManagement
+apiVersion: v2
+appVersion: 0.1.0
+description: Microservice Base Helm Chart
+engine: gotpl
+home: https://github.com/paas2/charts/tree/master/vault-access-definitions
+icon: https://github.com/paas2/charts/tree/master/vault-access-definitions/img/icon-220x234.png
+keywords:
+  - base helm chart
+kubeVersion: '>= 1.16.0-0'
+maintainers:
+  - email: canpolatoral@gmail.com
+    name: Canpolat Oral
+name: ms-base-chart
+sources:
+  - https://github.com/paas2/VaultAdmissionWebHook
+version: 0.1.0
